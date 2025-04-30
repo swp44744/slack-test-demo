@@ -17,8 +17,7 @@ const instance = axios.create({
   }
 
   export enum QueryKey {
-    Experts = 'Experts',
-    Profile = "Profile"
+    Users = "Users"
   }
 
   function handleReject(error: AxiosError) {
