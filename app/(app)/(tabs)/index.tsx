@@ -5,20 +5,24 @@ import { useDebounce } from 'use-debounce';
 import { SearchBar } from '@/components/search/SearchBar';
 import { ListUsers } from '@/components/search/ListUsers';
 import { useUsersQuery } from '@/hooks/useUsersQuery';
-import { ErrorView } from '@/components/common/ErrorView';
 import { LoadingView } from '@/components/common/LoadingView';
+import { EmptyView } from '@/components/common/EmptyView';
 
+const strings = {
+  searchPlaceHolder: 'Search users..',
+  errorMessage: 'Something went wrong.',
+};
 export default function SearchUsersScreen() {
   const [input, setInput] = useState('');
   const [debouncedSearchTerm] = useDebounce(input, 800);
   const { data: users = [], isLoading, error } = useUsersQuery(debouncedSearchTerm);
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <SearchBar value={input} onChange={setInput} placeholder="Search users..." />
+    <SafeAreaView style={styles.container}>
+      <SearchBar value={input} onChange={setInput} placeholder={strings.searchPlaceHolder} />
       <View style={styles.content}>
         {isLoading && <LoadingView />}
-        {error && <ErrorView />}
+        {error && <EmptyView message={strings.errorMessage} type='error' />}
         {!isLoading && !error && <ListUsers users={users} />}
       </View>
     </SafeAreaView>
@@ -28,7 +32,7 @@ export default function SearchUsersScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f8f8', // Slack-like soft gray background
+    backgroundColor: '#f8f8f8',
   },
   content: {
     flex: 1,
