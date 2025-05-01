@@ -23,6 +23,7 @@ export const ListUsers: React.FC<Props> = ({ users }) => {
         </View>
       )}
       ListEmptyComponent={<EmptyView message="No users found." type='info' />}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

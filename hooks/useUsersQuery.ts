@@ -23,7 +23,7 @@ const fetchUsers = async (searchTerm: string): Promise<User[]> => {
 };
 
 export const useUsersQuery = (searchTerm: string) => {
-  const isAllowed = searchTerm.length >= 2 && !DENY_LIST.has(searchTerm.toLowerCase());
+  const isAllowed = !DENY_LIST.has(searchTerm.toLowerCase());
   console.log('searchTerm:', searchTerm, 'isAllowed:', isAllowed);
 
   
