@@ -15,6 +15,10 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
     npx expo start
    ```
+3. Incase if you face any build issues run below script (This will create a local development build for iOS & android):
+   ```bash
+   npm run start:dev
+   ```
 
 In the output, you'll find options to open the app in a
 
