@@ -9,7 +9,7 @@ interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, placeholder }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.wrapper}>
       <TextInput
         style={styles.input}
         value={value}
@@ -18,23 +18,28 @@ export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, placehold
         placeholderTextColor="#888"
         autoCapitalize="none"
         autoCorrect={false}
+        clearButtonMode="while-editing"
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     padding: 12,
   },
   input: {
-    backgroundColor: '#f0f0f0',
-    borderRadius: 14,
-    padding: 10,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#ddd', // light border
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
     fontSize: 16,
-    marginBottom: 8,
-    borderWidth: 0.5,
-    borderColor: 'gray',
     shadowColor: '#000',
+    shadowOpacity: 0.04,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 1,
   },
 });
