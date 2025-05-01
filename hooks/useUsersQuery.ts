@@ -4,6 +4,12 @@ import { makeRequest, QueryKey, QueryMethod } from '@/networking';
 import { User, UsersResponse } from '@/types/user';
 import { useQuery } from '@tanstack/react-query';
 
+// This function fetches users based on the search term
+// It uses the makeRequest function to send a request to the API
+// The API URL & Stale time is defined in the Config file
+// It usee React Query to manage the state of the request and cache the response
+// It makes a GET request to the API and returns the list of users
+// The search term is passed as a query parameter
 const fetchUsers = async (searchTerm: string): Promise<User[]> => {
   const response = await makeRequest<UsersResponse>({
     method: QueryMethod.GET,
@@ -17,7 +23,7 @@ const fetchUsers = async (searchTerm: string): Promise<User[]> => {
 };
 
 export const useUsersQuery = (searchTerm: string) => {
-  const isAllowed = !DENY_LIST.has(searchTerm.toLowerCase());
+  const isAllowed = searchTerm.length >= 2 && !DENY_LIST.has(searchTerm.toLowerCase());
   console.log('searchTerm:', searchTerm, 'isAllowed:', isAllowed);
 
   

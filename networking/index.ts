@@ -20,6 +20,9 @@ const instance = axios.create({
     Users = "Users"
   }
 
+  // This function handles the error response from the API
+  // It checks if the error has a response, request, or is a general error
+  // This can be enhanced to handle auth failures and other specific error codes as well.
   function handleReject(error: AxiosError) {
     if (error.response) {
       console.error("API Error:", error.response.status, error.response.data);
@@ -36,11 +39,17 @@ const instance = axios.create({
     }
   }
 
+  // This function handles the response from the API
+  // It checks if the response is successful or not
+  // If the response is not successful, it throws an error
+  // This can be enhanced to abort the requests in case of 401 error.
   instance.interceptors.response.use(
     (response: AxiosResponse) => response,
     (error: AxiosError) => Promise.reject(handleReject(error))
   );
 
+  // This function is used to make API requests
+  // It takes a config object as an argument and returns a promise of generic type T
   export async function makeRequest<T>(
     config: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {

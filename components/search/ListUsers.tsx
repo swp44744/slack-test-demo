@@ -6,7 +6,8 @@ import { EmptyView } from '../common/EmptyView';
 interface Props {
   users: User[];
 }
-
+// ListUsers component to display a list of users
+// It takes an array of users as a prop and renders them in a FlatList
 export const ListUsers: React.FC<Props> = ({ users }) => {
   return (
     <FlatList

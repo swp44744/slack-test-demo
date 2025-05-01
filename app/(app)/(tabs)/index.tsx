@@ -12,9 +12,11 @@ const strings = {
   searchPlaceHolder: 'Search users..',
   errorMessage: 'Something went wrong.',
 };
+// SearchUsersScreen component to search and display users
 export default function SearchUsersScreen() {
   const [input, setInput] = useState('');
-  const [debouncedSearchTerm] = useDebounce(input, 800);
+  // Debouce user input to avoid too many API calls.
+  const [debouncedSearchTerm] = useDebounce(input, 1000);
   const { data: users = [], isLoading, error } = useUsersQuery(debouncedSearchTerm);
 
   return (
